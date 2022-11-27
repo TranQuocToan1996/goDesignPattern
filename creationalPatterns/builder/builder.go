@@ -24,46 +24,84 @@ type VehicleProduct struct {
 	Structure string
 }
 
-type ManufacturingDirector struct{}
+type ManufacturingDirector struct {
+	builder BuildProcess
+}
 
 // Construct method that will use the builder that is stored in Manufacturing, and will reproduce the required steps
 func (m *ManufacturingDirector) Constructs() {
-
+	m.builder.SetSeats().SetStructure().SetWheels()
 }
 
 // The SetBuilder method will allow us to change the builder that is being used in the Manufacturing director
 func (m *ManufacturingDirector) SetBuilder(b BuildProcess) {
-
+	m.builder = b
 }
 
-
-type CarBuilder struct{}
+type CarBuilder struct {
+	v VehicleProduct
+}
 
 func (c *CarBuilder) SetWheels() BuildProcess {
-    return nil
+	c.v.Wheels = 4
+	return c
 }
+
 func (c *CarBuilder) SetSeats() BuildProcess {
-    return nil
+	c.v.Seats = 5
+	return c
 }
 func (c *CarBuilder) SetStructure() BuildProcess {
-    return nil
+	c.v.Structure = "Car"
+	return c
 }
 func (c *CarBuilder) GetVehicle() VehicleProduct {
-    return VehicleProduct{}
+	return c.v
 }
 
 // The process are difference. Diff logic
-type BikeBuilder struct{}
+type BikeBuilder struct {
+	v VehicleProduct
+}
 
 func (c *BikeBuilder) SetWheels() BuildProcess {
-    return nil
+	c.v.Wheels = 2
+	return c
 }
+
 func (c *BikeBuilder) SetSeats() BuildProcess {
-    return nil
+	c.v.Seats = 2
+	return c
 }
+
 func (c *BikeBuilder) SetStructure() BuildProcess {
-    return nil
+	c.v.Structure = "Motorbike"
+	return c
 }
+
 func (c *BikeBuilder) GetVehicle() VehicleProduct {
-    return VehicleProduct{}
+	return c.v
+}
+
+type MotorBuilder struct {
+	v VehicleProduct
+}
+
+func (m *MotorBuilder) SetWheels() BuildProcess {
+	m.v.Wheels = 8
+	return m
+}
+
+func (m *MotorBuilder) SetSeats() BuildProcess {
+	m.v.Seats = 30
+	return m
+}
+
+func (m *MotorBuilder) SetStructure() BuildProcess {
+	m.v.Structure = "Bus"
+	return m
+}
+
+func (m *MotorBuilder) GetVehicle() VehicleProduct {
+	return m.v
 }
