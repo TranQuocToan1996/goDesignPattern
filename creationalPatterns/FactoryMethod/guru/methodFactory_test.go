@@ -8,11 +8,11 @@ func TestMethodFactory(t *testing.T) {
 	ak47, _ := getGun("ak47")
 	musket, _ := getGun("musket")
 
-	printDetails(t, ak47)
-	printDetails(t, musket)
+	generalTestGun(t, ak47)
+	generalTestGun(t, musket)
 }
 
-func printDetails(t *testing.T, g iGun) {
+func generalTestGun(t *testing.T, g iGun) {
 	if len(g.getName()) == 0 {
 		t.Fatal("must got name")
 	}
