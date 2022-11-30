@@ -6,8 +6,8 @@ import (
 )
 
 func TestAbstractFactory(t *testing.T) {
-	adidasFactory, _ := GetSportsFactory("adidas")
-	nikeFactory, _ := GetSportsFactory("nike")
+	adidasFactory, _ := GetSportsFactory(adidas)
+	nikeFactory, _ := GetSportsFactory(nike)
 
 	nikeShoe := nikeFactory.makeShoe()
 	nikeShirt := nikeFactory.makeShirt()
