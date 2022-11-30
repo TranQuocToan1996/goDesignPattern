@@ -10,6 +10,7 @@ func TestMethodFactory(t *testing.T) {
 
 	generalTestGun(t, ak47)
 	generalTestGun(t, musket)
+
 }
 
 func generalTestGun(t *testing.T, g iGun) {
