@@ -20,6 +20,7 @@ func (t *UserList) addUser(newUser User) {
 	*t = append(*t, newUser)
 }
 
+// Proxy uses the same interface as the type it wraps
 func (u *UserListProxy) FindUser(id int32) (User, error) {
 
 	user, err := u.StackCache.FindUser(id)

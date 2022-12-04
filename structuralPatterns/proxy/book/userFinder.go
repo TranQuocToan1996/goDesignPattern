@@ -13,6 +13,7 @@ type User struct {
 
 type UserList []User
 
+// Proxy uses the same interface as the type it wraps
 func (u *UserList) FindUser(id int32) (User, error) {
 	for i := 0; i < len(*u); i++ {
 		if (*u)[i].ID == id {
