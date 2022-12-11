@@ -1,20 +1,19 @@
 package creationalPatterns
 
-type Nike struct {
-}
+type Nike struct{}
 
-func (n *Nike) makeShoe() IShoe {
-	return &NikeShoe{
-		Shoe: Shoe{
+func (n *Nike) MakeShoe() IShoe {
+	return &nikeShoe{
+		shoe: shoe{
 			logo: "nike",
 			size: 14,
 		},
 	}
 }
 
-func (n *Nike) makeShirt() IShirt {
-	return &NikeShirt{
-		Shirt: Shirt{
+func (n *Nike) MakeShirt() IShirt {
+	return &nikeShirt{
+		shirt: shirt{
 			logo: "nike",
 			size: 14,
 		},

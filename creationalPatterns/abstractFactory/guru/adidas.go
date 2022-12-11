@@ -1,20 +1,19 @@
 package creationalPatterns
 
-type Adidas struct {
-}
+type Adidas struct{}
 
-func (a *Adidas) makeShoe() IShoe {
-	return &AdidasShoe{
-		Shoe: Shoe{
+func (a *Adidas) MakeShoe() IShoe {
+	return &adidasShoe{
+		shoe: shoe{
 			logo: "adidas",
 			size: 14,
 		},
 	}
 }
 
-func (a *Adidas) makeShirt() IShirt {
-	return &AdidasShirt{
-		Shirt: Shirt{
+func (a *Adidas) MakeShirt() IShirt {
+	return &adidasShirt{
+		shirt: shirt{
 			logo: "adidas",
 			size: 14,
 		},

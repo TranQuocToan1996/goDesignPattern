@@ -1,5 +1,5 @@
 package creationalPatterns
 
-type AdidasShirt struct {
-    Shirt
+type adidasShirt struct {
+	shirt
 }

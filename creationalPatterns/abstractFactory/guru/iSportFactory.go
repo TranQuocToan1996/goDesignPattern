@@ -3,9 +3,9 @@ package creationalPatterns
 import "fmt"
 
 // Abstract factory interface
-type iSportFactory interface {
-	makeShoe() IShoe
-	makeShirt() IShirt
+type ISportFactory interface {
+	MakeShoe() IShoe
+	MakeShirt() IShirt
 }
 
 type Brand string
@@ -15,7 +15,7 @@ const (
 	nike   Brand = "nike"
 )
 
-func GetSportsFactory(brand Brand) (iSportFactory, error) {
+func GetSportsFactory(brand Brand) (ISportFactory, error) {
 	if brand == adidas {
 		return &Adidas{}, nil
 	}
@@ -24,5 +24,5 @@ func GetSportsFactory(brand Brand) (iSportFactory, error) {
 		return &Nike{}, nil
 	}
 
-	return nil, fmt.Errorf("Wrong brand type passed")
+	return nil, fmt.Errorf("wrong brand type passed")
 }

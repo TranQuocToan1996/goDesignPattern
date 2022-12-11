@@ -4,27 +4,27 @@ package creationalPatterns
 type IShoe interface {
 	setLogo(logo string)
 	setSize(size int)
-	getLogo() string
-	getSize() int
+	GetLogo() string
+	GetSize() int
 }
 
-type Shoe struct {
+type shoe struct {
 	logo string
 	size int
 }
 
-func (s *Shoe) setLogo(logo string) {
+func (s *shoe) setLogo(logo string) {
 	s.logo = logo
 }
 
-func (s *Shoe) getLogo() string {
+func (s *shoe) GetLogo() string {
 	return s.logo
 }
 
-func (s *Shoe) setSize(size int) {
+func (s *shoe) setSize(size int) {
 	s.size = size
 }
 
-func (s *Shoe) getSize() int {
+func (s *shoe) GetSize() int {
 	return s.size
 }
