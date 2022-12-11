@@ -24,6 +24,7 @@ func (this *HighResolutionImage) display() {
 type ImageProxy struct {
 	imageFilePath string
 	realImage     Image
+	// TODO: May implement cache for recently image use
 }
 
 func (this *ImageProxy) display() {
