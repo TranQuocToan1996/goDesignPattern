@@ -1,7 +1,7 @@
 package behavioralPatterns
 
 type Patient struct {
-	name              string
+	Name              string
 	registrationDone  bool
 	doctorCheckUpDone bool
 	medicineDone      bool

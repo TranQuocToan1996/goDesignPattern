@@ -7,17 +7,17 @@ func TestCOR(t *testing.T) {
 
 	//Set next for medical department
 	medical := &Medical{}
-	medical.setNext(cashier)
+	medical.SetNext(cashier)
 
 	//Set next for doctor department
 	doctor := &Doctor{}
-	doctor.setNext(medical)
+	doctor.SetNext(medical)
 
 	//Set next for reception department
 	reception := &Reception{}
-	reception.setNext(doctor)
+	reception.SetNext(doctor)
 
-	patient := &Patient{name: "abc"}
+	patient := &Patient{Name: "abc"}
 	//Patient visiting
-	reception.execute(patient)
+	reception.Execute(patient)
 }
