@@ -19,7 +19,7 @@ func TestIterator(t *testing.T) {
 		users: []*User{user1, user2},
 	}
 
-	iterator := userCollection.createIterator()
+	iterator := userCollection.CreateIterator()
 
 	for iterator.HasNext() {
 		user := iterator.GetNext()
