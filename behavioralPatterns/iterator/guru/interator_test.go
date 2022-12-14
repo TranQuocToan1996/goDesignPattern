@@ -7,12 +7,12 @@ import (
 
 func TestIterator(t *testing.T) {
 	user1 := &User{
-		name: "a",
-		age:  30,
+		Name: "a",
+		Age:  30,
 	}
 	user2 := &User{
-		name: "b",
-		age:  20,
+		Name: "b",
+		Age:  20,
 	}
 
 	userCollection := &UserCollection{
@@ -21,8 +21,8 @@ func TestIterator(t *testing.T) {
 
 	iterator := userCollection.createIterator()
 
-	for iterator.hasNext() {
-		user := iterator.getNext()
+	for iterator.HasNext() {
+		user := iterator.GetNext()
 		fmt.Printf("User is %+v\n", user)
 	}
 }

@@ -1,6 +1,6 @@
 package behavioralPatterns
 
 type Iterator interface {
-	hasNext() bool
-	getNext() *User
+	HasNext() bool
+	GetNext() *User
 }

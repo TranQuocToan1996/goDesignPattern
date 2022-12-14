@@ -1,6 +1,6 @@
 package behavioralPatterns
 
 type User struct {
-	name string
-	age  int
+	Name string
+	Age  int
 }
