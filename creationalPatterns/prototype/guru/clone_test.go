@@ -20,9 +20,9 @@ func TestClone(t *testing.T) {
 		name:     "Folder2",
 	}
 	fmt.Println("\nPrinting hierarchy for Folder2")
-	folder2.print("  ")
+	folder2.Print("  ")
 
-	cloneFolder := folder2.clone()
+	cloneFolder := folder2.Clone()
 	fmt.Println("\nPrinting hierarchy for clone Folder")
-	cloneFolder.print("  ")
+	cloneFolder.Print("  ")
 }

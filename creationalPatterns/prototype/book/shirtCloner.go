@@ -5,33 +5,42 @@ import (
 	"fmt"
 )
 
-type ShirtCloner interface {
-	GetClone(s int) (ItemInfoGetter, error)
-}
-
 const (
 	White = 1
 	Black = 2
 	Blue  = 3
 )
 
+type ShirtCloner interface {
+	GetClone(s int) (ItemInfoGetter, error)
+}
+
+type ShirtsCache struct{}
+
+func (c *ShirtsCache) GetClone(s int) (ItemInfoGetter, error) {
+	switch s {
+	case White:
+		newItem := *whitePrototype
+		return &newItem, nil
+	case Black:
+		newItem := *blackPrototype
+		return &newItem, nil
+	case Blue:
+		newItem := *bluePrototype
+		return &newItem, nil
+	default:
+		return nil, errors.New("Shirt model not recognized")
+	}
+}
+
 func GetShirtsCloner() ShirtCloner {
 	return &ShirtsCache{}
-}
-
-type ShirtCache struct {
-}
-
-func (c *ShirtCache) GetClone(s int) (ItemInfoGetter, error) {
-	return nil, errors.New("not implemention yet")
 }
 
 type ItemInfoGetter interface {
 	GetInfo() string
 }
-
 type ShirtColor byte
-
 type Shirt struct {
 	Price float32
 	SKU   string
@@ -56,22 +65,4 @@ var bluePrototype *Shirt = &Shirt{
 	Price: 17.00,
 	SKU:   "empty",
 	Color: Blue,
-}
-
-type ShirtsCache struct{}
-
-func (c *ShirtsCache) GetClone(s int) (ItemInfoGetter, error) {
-	switch s {
-	case White:
-		newItem := *whitePrototype
-		return &newItem, nil
-	case Black:
-		newItem := *blackPrototype
-		return &newItem, nil
-	case Blue:
-		newItem := *bluePrototype
-		return &newItem, nil
-	default:
-		return nil, errors.New("Shirt model not recognized")
-	}
 }
