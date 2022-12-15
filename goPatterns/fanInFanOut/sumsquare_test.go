@@ -19,7 +19,7 @@ func TestFaninFanout(t *testing.T) {
 	var inputsFanin = []<-chan int{}
 
 	for i := 0; i < numCPU; i++ {
-		inputsFanin = append(inputsFanin, fanout(pipe))
+		inputsFanin = append(inputsFanin, fanout(pipe, square))
 	}
 	var sum int
 	for val := range fanin(inputsFanin...) {
@@ -27,6 +27,10 @@ func TestFaninFanout(t *testing.T) {
 	}
 	fmt.Println(sum)
 
+}
+
+func square(num int) int {
+	return num * num
 }
 
 func generatePipeLine(s []int) <-chan int {
@@ -42,7 +46,7 @@ func generatePipeLine(s []int) <-chan int {
 	return pipe
 }
 
-func fanout(in <-chan int) <-chan int {
+func fanout(in <-chan int, f func(int) int) <-chan int {
 	out := make(chan int)
 	go func() {
 		defer close(out)
