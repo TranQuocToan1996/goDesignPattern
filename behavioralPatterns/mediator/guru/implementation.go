@@ -6,42 +6,42 @@ type PassengerTrain struct {
 	mediator Mediator
 }
 
-func (g *PassengerTrain) arrive() {
-	if !g.mediator.canArrive(g) {
+func (g *PassengerTrain) Arrive() {
+	if !g.mediator.CanArrive(g) {
 		fmt.Println("PassengerTrain: Arrival blocked, waiting")
 		return
 	}
 	fmt.Println("PassengerTrain: Arrived")
 }
 
-func (g *PassengerTrain) depart() {
+func (g *PassengerTrain) Depart() {
 	fmt.Println("PassengerTrain: Leaving")
-	g.mediator.notifyAboutDeparture()
+	g.mediator.NotifyAboutDeparture()
 }
 
-func (g *PassengerTrain) permitArrival() {
+func (g *PassengerTrain) PermitArrival() {
 	fmt.Println("PassengerTrain: Arrival permitted, arriving")
-	g.arrive()
+	g.Arrive()
 }
 
 type FreightTrain struct {
 	mediator Mediator
 }
 
-func (g *FreightTrain) arrive() {
-	if !g.mediator.canArrive(g) {
+func (g *FreightTrain) Arrive() {
+	if !g.mediator.CanArrive(g) {
 		fmt.Println("FreightTrain: Arrival blocked, waiting")
 		return
 	}
 	fmt.Println("FreightTrain: Arrived")
 }
 
-func (g *FreightTrain) depart() {
+func (g *FreightTrain) Depart() {
 	fmt.Println("FreightTrain: Leaving")
-	g.mediator.notifyAboutDeparture()
+	g.mediator.NotifyAboutDeparture()
 }
 
-func (g *FreightTrain) permitArrival() {
+func (g *FreightTrain) PermitArrival() {
 	fmt.Println("FreightTrain: Arrival permitted")
-	g.arrive()
+	g.Arrive()
 }

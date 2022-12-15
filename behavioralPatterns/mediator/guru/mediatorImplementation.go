@@ -11,7 +11,7 @@ func newStationManger() *StationManager {
 	}
 }
 
-func (s *StationManager) canArrive(t Train) bool {
+func (s *StationManager) CanArrive(t Train) bool {
 	if s.isPlatformFree {
 		s.isPlatformFree = false
 		return true
@@ -20,13 +20,13 @@ func (s *StationManager) canArrive(t Train) bool {
 	return false
 }
 
-func (s *StationManager) notifyAboutDeparture() {
+func (s *StationManager) NotifyAboutDeparture() {
 	if !s.isPlatformFree {
 		s.isPlatformFree = true
 	}
 	if len(s.trainQueue) > 0 {
 		firstTrainInQueue := s.trainQueue[0]
 		s.trainQueue = s.trainQueue[1:]
-		firstTrainInQueue.permitArrival()
+		firstTrainInQueue.PermitArrival()
 	}
 }

@@ -1,6 +1,6 @@
 package behavioralPatterns
 
 type Mediator interface {
-	canArrive(Train) bool
-	notifyAboutDeparture()
+	CanArrive(Train) bool
+	NotifyAboutDeparture()
 }

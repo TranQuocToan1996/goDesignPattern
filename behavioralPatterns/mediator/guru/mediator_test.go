@@ -12,7 +12,7 @@ func TestMediator(t *testing.T) {
 		mediator: stationManager,
 	}
 
-	passengerTrain.arrive()
-	freightTrain.arrive()
-	passengerTrain.depart()
+	passengerTrain.Arrive()
+	freightTrain.Arrive()
+	passengerTrain.Depart()
 }
