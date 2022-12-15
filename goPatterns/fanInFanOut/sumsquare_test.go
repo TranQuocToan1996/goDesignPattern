@@ -51,7 +51,7 @@ func fanout(in <-chan int, f func(int) int) <-chan int {
 	go func() {
 		defer close(out)
 		for num := range in {
-			out <- num * num
+			out <- f(num)
 		}
 	}()
 	return out
