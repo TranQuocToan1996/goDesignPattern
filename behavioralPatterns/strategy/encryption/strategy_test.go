@@ -24,7 +24,7 @@ func TestStrategy(t *testing.T) {
 	// SHA256 to hash the input.
 	decryptedBytes, err := privateKey.Decrypt(nil, cipherRSA, &rsa.OAEPOptions{Hash: crypto.SHA256})
 	if err != nil {
-		panic(err)
+		t.Fatal(err)
 	}
 
 	// We get back the original information in the form of bytes, which we
@@ -41,7 +41,7 @@ func TestStrategy(t *testing.T) {
 
 	plaintextBuf, err := ecies.Decrypt(keyEllip, cipherEllipticCurve)
 	if err != nil {
-		panic(err)
+		t.Fatal(err)
 	}
 	log.Printf("ciphertext decrypted: %s\n", string(plaintextBuf))
 	if !strings.Contains(string(plaintextBuf), msg) {
