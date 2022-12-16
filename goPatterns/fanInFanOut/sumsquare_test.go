@@ -9,14 +9,14 @@ import (
 func TestFaninFanout(t *testing.T) {
 	numbers := make([]int, 1000)
 	for i := range numbers {
-		numbers = append(numbers, i)
+		numbers[i] = i
 	}
 
 	pipe := generatePipeLine(numbers)
 
 	numCPU := runtime.NumCPU()
 
-	var inputsFanin = []<-chan int{}
+	var inputsFanin = make([]<-chan int, 0, numCPU)
 
 	for i := 0; i < numCPU; i++ {
 		inputsFanin = append(inputsFanin, fanout(pipe, square))
@@ -48,7 +48,13 @@ func generatePipeLine(s []int) <-chan int {
 
 func fanout(in <-chan int, f func(int) int) <-chan int {
 	out := make(chan int)
+
 	go func() {
+		//TODO: Use method factory if needed
+		if f == nil {
+			f = square
+		}
+
 		defer close(out)
 		for num := range in {
 			out <- f(num)
