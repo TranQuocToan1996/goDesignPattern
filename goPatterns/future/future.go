@@ -7,15 +7,20 @@ type (
 
 	ExecuteStringFunc func() (string, error)
 
-	MaybeString struct{}
+	MaybeString struct {
+		successFunc SuccessFunc
+		failFunc    FailFunc
+	}
 )
 
 func (s *MaybeString) Success(f SuccessFunc) *MaybeString {
-	return nil
+	s.successFunc = f
+	return s
 }
 
 func (s *MaybeString) Fail(f FailFunc) *MaybeString {
-	return nil
+	s.failFunc = f
+	return s
 }
 
 func (s *MaybeString) Execute(f ExecuteStringFunc) {
