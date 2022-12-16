@@ -24,4 +24,12 @@ func (s *MaybeString) Fail(f FailFunc) *MaybeString {
 }
 
 func (s *MaybeString) Execute(f ExecuteStringFunc) {
+	go func(s *MaybeString) {
+		str, err := f()
+		if err != nil {
+			s.failFunc(err)
+		} else {
+			s.successFunc(str)
+		}
+	}(s)
 }
