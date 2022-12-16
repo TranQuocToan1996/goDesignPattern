@@ -24,7 +24,7 @@ func TestLaunchPipeline(t *testing.T) {
 // Same example with fanin fanout example
 func LaunchPipeline(amount int) int {
 	firstCh := generator(amount)
-	secondCh := power(firstCh)
+	secondCh := powerSquare(firstCh)
 	thirdCh := sum(secondCh)
 	result := <-thirdCh
 	return result
@@ -41,7 +41,7 @@ func generator(max int) <-chan int {
 	return outChInt
 }
 
-func power(in <-chan int) <-chan int {
+func powerSquare(in <-chan int) <-chan int {
 	out := make(chan int, cap)
 	go func() {
 		defer close(out)
