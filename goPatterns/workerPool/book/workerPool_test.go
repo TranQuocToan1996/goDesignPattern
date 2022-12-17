@@ -1,6 +1,7 @@
 package book
 
 import (
+	"context"
 	"fmt"
 	"regexp"
 	"sync"
@@ -76,15 +77,27 @@ func Test_Dispatcher(t *testing.T) {
 }
 
 func TestPoolObj(t *testing.T) {
-	p := New(2)
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(timeout))
+	defer cancel()
+	p := New(100)
+	var (
+		count = 0
+	)
 
-	select {
-	case obj := <-(*p):
-		obj.Do()
+	for {
+		if count > 1000 {
+			break
+		}
 
-		(*p) <- obj
-	default:
-		// No more objects left — retry later or fail
-		return
+		select {
+		case obj := <-(*p):
+			obj.Do(ctx)
+			(*p) <- obj
+			count++
+			time.Sleep(time.Microsecond)
+		case <-ctx.Done():
+			t.Error("timeout")
+			return
+		}
 	}
 }
