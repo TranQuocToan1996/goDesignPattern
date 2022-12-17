@@ -74,3 +74,17 @@ func Test_Dispatcher(t *testing.T) {
 	}
 
 }
+
+func TestPoolObj(t *testing.T) {
+	p := New(2)
+
+	select {
+	case obj := <-(*p):
+		obj.Do()
+
+		(*p) <- obj
+	default:
+		// No more objects left — retry later or fail
+		return
+	}
+}

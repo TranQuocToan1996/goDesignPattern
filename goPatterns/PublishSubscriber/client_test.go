@@ -59,10 +59,8 @@ func TestPublisher(t *testing.T) {
 
 	p := NewPublisher()
 
-	var wg sync.WaitGroup
 	sub := &mockSubscriber{
 		notifyTestingFunc: func(msg interface{}) {
-			defer wg.Done()
 			s, ok := msg.(string)
 			if !ok {
 				t.Fatal(errors.New("Could not assert result"))
@@ -72,20 +70,16 @@ func TestPublisher(t *testing.T) {
 			}
 		},
 		closeTestingFunc: func() {
-			wg.Done()
+			fmt.Println("close testing fn")
 		}}
 	p.start()
 	p.AddSubscriberCh() <- sub
-	wg.Add(1)
 	p.PublishingCh() <- msg
-	wg.Wait()
 	pubCon, ok := p.(*publisher)
 	if len(pubCon.subscribers) != 1 || !ok {
 		t.Error("Unexpected number of subscribers")
 	}
-	wg.Add(1)
 	p.RemoveSubscriberCh() <- sub
-	wg.Wait()
 	//Number of subscribers is restored to zero
 	if len(pubCon.subscribers) != 0 {
 		t.Error("Expected no subscribers")
